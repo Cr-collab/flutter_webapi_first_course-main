@@ -8,7 +8,7 @@ void main() async {
   runApp(const MyApp());
   JournalService service = JournalService();
   await service.register("Ola mundo");
-  await service.get();
+  // await service.get();
 }
 
 class MyApp extends StatelessWidget {
