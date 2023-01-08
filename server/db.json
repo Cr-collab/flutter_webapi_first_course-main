@@ -1,19 +1,11 @@
 {
-  "learnhttp": {
-    "content": "Ola mundo"
-  },
+  "learnhttp": {},
   "journals": [
     {
-      "id": "0d417cc0-8f73-11ed-8785-c9550fd066d9",
-      "content": "kk",
-      "created_at": "2023-01-08 13:39:42.484681",
-      "update_at": "2023-01-08 13:39:42.484685"
-    },
-    {
-      "id": "3f68faa0-8f7a-11ed-b0cc-d7deb99e6879",
-      "content": "ola 👋👋👋",
-      "created_at": "2023-01-08 14:31:13.098791",
-      "update_at": "2023-01-08 14:31:13.098793"
+      "id": "9f5d9360-8f7c-11ed-bcbf-510304eb6dba",
+      "content": "aquuiiiiii",
+      "created_at": "2023-01-08 14:48:13.078597",
+      "updated_at": "2023-01-08 14:48:13.078599"
     }
   ]
 }
