@@ -7,8 +7,7 @@ import 'screens/home_screen/home_screen.dart';
 
 void main() async {
   runApp(const MyApp());
-  // JournalService service = JournalService();
-  // await service.register("Ola mundo");
+
   // await service.get();
 }
 
@@ -27,20 +26,26 @@ class MyApp extends StatelessWidget {
           backgroundColor: Colors.black,
           titleTextStyle: TextStyle(color: Colors.white),
           actionsIconTheme: IconThemeData(color: Colors.white),
+          iconTheme: IconThemeData(color: Colors.white),
         ),
       ),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
-      initialRoute: "add-journal",
+      initialRoute: "home",
       routes: {
         "home": (context) => const HomeScreen(),
-        "add-journal": (context) => AddJournalScreen(
-              journal: Journal(
-                  content: 'alo natalina',
-                  createdAt: DateTime.now(),
-                  id: 'nalinaaaa',
-                  updatedAt: DateTime.now()),
-            ),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == 'add-journal') {
+          final Journal journal = settings.arguments as Journal;
+          return MaterialPageRoute(
+            builder: (context) {
+              return AddJournalScreen(
+                journal: journal,
+              );
+            },
+          );
+        }
       },
     );
   }
