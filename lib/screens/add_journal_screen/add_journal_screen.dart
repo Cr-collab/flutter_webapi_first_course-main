@@ -18,13 +18,14 @@ class AddJournalScreen extends StatelessWidget {
           IconButton(
             onPressed: () async {
               String content = _contentController.text;
+              print(content);
               JournalService service = JournalService();
               bool result = await service.register(
                 Journal(
                   id: Uuid().v1(),
                   content: content,
-                  createdAt: DateTime.now(),
-                  updatedAt: DateTime.now(),
+                  createdAt: journal.createdAt,
+                  updatedAt: journal.updatedAt,
                 ),
               );
               Navigator.pop(context, result);
