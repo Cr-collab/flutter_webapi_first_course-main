@@ -16,19 +16,19 @@ class AddJournalScreen extends StatelessWidget {
             "${WeekDay(journal.createdAt.weekday).long.toLowerCase()}, ${journal.createdAt.day} | ${journal.createdAt.month} | ${journal.createdAt.year}"),
         actions: [
           IconButton(
-            onPressed: () async {
+            onPressed: () {
               String content = _contentController.text;
-              print(content);
               JournalService service = JournalService();
-              bool result = await service.register(
-                Journal(
-                  id: Uuid().v1(),
-                  content: content,
-                  createdAt: journal.createdAt,
-                  updatedAt: journal.updatedAt,
-                ),
-              );
-              Navigator.pop(context, result);
+              service
+                  .register(
+                    Journal(
+                      id: const Uuid().v1(),
+                      content: content,
+                      createdAt: journal.createdAt,
+                      updatedAt: journal.updatedAt,
+                    ),
+                  )
+                  .then((value) => Navigator.pop(context, value));
             },
             icon: const Icon(Icons.check),
           ),

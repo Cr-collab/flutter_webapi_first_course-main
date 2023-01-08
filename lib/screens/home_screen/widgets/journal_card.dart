@@ -86,7 +86,6 @@ class JournalCard extends StatelessWidget {
     } else {
       return InkWell(
         onTap: () async {
-          print(showedDate.toString() + "aquuuuu");
           Navigator.pushNamed(
             context,
             'add-journal',

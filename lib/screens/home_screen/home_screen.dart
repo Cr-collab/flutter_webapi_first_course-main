@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
           "${currentDay.day}  |  ${currentDay.month}  |  ${currentDay.year}",
         ),
         actions: [
-          IconButton(onPressed: () => refresh(), icon: Icon(Icons.refresh)),
+          IconButton(
+              onPressed: () => refresh(), icon: const Icon(Icons.refresh)),
         ],
       ),
       body: ListView(
@@ -61,7 +62,5 @@ class _HomeScreenState extends State<HomeScreen> {
         database[journal.id] = journal;
       }
     });
-    print('aqtualizando ');
-    print('${database} + "na pagina inicial"');
   }
 }
