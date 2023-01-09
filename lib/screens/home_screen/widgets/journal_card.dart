@@ -13,12 +13,40 @@ class JournalCard extends StatelessWidget {
     required this.showedDate,
     required this.refreshFunction,
   }) : super(key: key);
+  callAddJournalScreen(BuildContext context, {Journal? journal}) {
+    print(journal.toString() + 'aloooooo');
+    Journal innerJournal = Journal(
+      id: const Uuid().v1(),
+      content: "",
+      createdAt: showedDate,
+      updatedAt: showedDate,
+    );
+
+    if (journal != null) {
+      innerJournal = journal;
+    }
+
+    Navigator.pushNamed(
+      context,
+      'add-journal',
+      arguments: innerJournal,
+    ).then((value) {
+      if (value != null && value == true) {
+        refreshFunction();
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Registro feito com sucesso'),
+        ));
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     if (journal != null) {
       return InkWell(
-        onTap: () {},
+        onTap: () {
+          callAddJournalScreen(context, journal: journal);
+        },
         child: Container(
           height: 115,
           margin: const EdgeInsets.all(8),
@@ -85,24 +113,8 @@ class JournalCard extends StatelessWidget {
       );
     } else {
       return InkWell(
-        onTap: () async {
-          Navigator.pushNamed(
-            context,
-            'add-journal',
-            arguments: Journal(
-              id: const Uuid().v1(),
-              content: "",
-              createdAt: showedDate,
-              updatedAt: showedDate,
-            ),
-          ).then((value) {
-            if (value != null && value == true) {
-              refreshFunction();
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text('Registro feito com sucesso'),
-              ));
-            }
-          });
+        onTap: () {
+          callAddJournalScreen(context);
         },
         child: Container(
           height: 115,

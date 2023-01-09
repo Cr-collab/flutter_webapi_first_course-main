@@ -10,6 +10,7 @@ class AddJournalScreen extends StatelessWidget {
   AddJournalScreen({Key? key, required this.journal}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    _contentController.text = journal.content;
     return Scaffold(
       appBar: AppBar(
         title: Text(
