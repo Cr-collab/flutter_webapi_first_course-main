@@ -17,6 +17,7 @@ class JournalService {
     return "$url$resource";
   }
 
+  // salvando os dados
   Future<bool> register(Journal journal) async {
     final uriParse = Uri.parse(getUrl());
     String jsonJournal = json.encode(journal.toMap());
@@ -24,6 +25,23 @@ class JournalService {
       uriParse,
       body: jsonJournal,
       headers: {'Content-type': "application/json"},
+    );
+
+    if (response.statusCode == 201) {
+      return true;
+    }
+    return false;
+  }
+
+  // editando os dados
+  Future<bool> edit(String id, Journal journal) async {
+    final uriParse = Uri.parse('${getUrl()}$id');
+
+    String jsonJournal = json.encode(journal.toMap());
+    http.Response response = await client.put(
+      uriParse,
+      headers: {'Content-type': "application/json"},
+      body: jsonJournal,
     );
 
     if (response.statusCode == 201) {

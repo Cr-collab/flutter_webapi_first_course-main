@@ -2,12 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webapi_first_course/helpers/weekday.dart';
 import 'package:flutter_webapi_first_course/models/journal.dart';
 import 'package:flutter_webapi_first_course/services/journal_service.dart';
-import 'package:uuid/uuid.dart';
 
 class AddJournalScreen extends StatelessWidget {
   final Journal journal;
+  final bool isEditing;
   final TextEditingController _contentController = TextEditingController();
-  AddJournalScreen({Key? key, required this.journal}) : super(key: key);
+
+  AddJournalScreen({
+    Key? key,
+    required this.journal,
+    required this.isEditing,
+  }) : super(key: key);
+
+  registerJournal(BuildContext context) {
+    String content = _contentController.text;
+
+    journal.content = content;
+
+    JournalService service = JournalService();
+    if (isEditing) {
+      service.register(journal).then((value) {
+        Navigator.pop(context, value);
+      });
+    } else {
+      service.edit(journal.id, journal).then((value) {
+        Navigator.pop(context, value);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     _contentController.text = journal.content;
@@ -18,18 +41,7 @@ class AddJournalScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              String content = _contentController.text;
-              JournalService service = JournalService();
-              service
-                  .register(
-                    Journal(
-                      id: const Uuid().v1(),
-                      content: content,
-                      createdAt: journal.createdAt,
-                      updatedAt: journal.updatedAt,
-                    ),
-                  )
-                  .then((value) => Navigator.pop(context, value));
+              registerJournal(context);
             },
             icon: const Icon(Icons.check),
           ),

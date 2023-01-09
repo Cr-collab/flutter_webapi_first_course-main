@@ -13,26 +13,32 @@ class JournalCard extends StatelessWidget {
     required this.showedDate,
     required this.refreshFunction,
   }) : super(key: key);
+
   callAddJournalScreen(BuildContext context, {Journal? journal}) {
-    print(journal.toString() + 'aloooooo');
     Journal innerJournal = Journal(
       id: const Uuid().v1(),
       content: "",
       createdAt: showedDate,
       updatedAt: showedDate,
     );
+    Map<String, dynamic> map = {};
 
     if (journal != null) {
       innerJournal = journal;
+      map['is_editing'] = false;
+    } else {
+      map['is_editing'] = true;
     }
+
+    map['journal'] = innerJournal;
 
     Navigator.pushNamed(
       context,
       'add-journal',
-      arguments: innerJournal,
+      arguments: map,
     ).then((value) {
+      refreshFunction();
       if (value != null && value == true) {
-        refreshFunction();
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Registro feito com sucesso'),
         ));
@@ -106,6 +112,10 @@ class JournalCard extends StatelessWidget {
                     maxLines: 3,
                   ),
                 ),
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () {},
               ),
             ],
           ),
