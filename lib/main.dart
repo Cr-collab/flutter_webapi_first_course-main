@@ -6,7 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'screens/home_screen/home_screen.dart';
 
-void main() async {
+void nmain() async {
   runApp(const MyApp());
   JournalService service = JournalService();
 
@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         if (settings.name == 'add-journal') {
           final Journal journal = settings.arguments as Journal;
+          print(settings.arguments.toString() + 'criando rota');
           return MaterialPageRoute(
             builder: (context) {
               return AddJournalScreen(
