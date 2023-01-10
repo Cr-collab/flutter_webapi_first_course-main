@@ -64,4 +64,15 @@ class JournalService {
 
     return list;
   }
+
+  Future<bool> delete(String id) async {
+    final uriParse = Uri.parse('${getUrl()}$id');
+
+    http.Response response = await http.delete(uriParse);
+
+    if (response.statusCode == 200) {
+      return true;
+    }
+    return false;
+  }
 }
