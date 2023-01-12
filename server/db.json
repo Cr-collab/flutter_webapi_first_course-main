@@ -1,5 +1,11 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "cristiccorrea@gmail.com",
+      "password": "$2a$10$DpDuRV6cg2bT2.n/1bLCN.YKoWWGZaRF3oTR34YR.6cQQLsOTybhq",
+      "id": 1
+    }
+  ],
   "learnhttp": {},
   "journals": [
     {
