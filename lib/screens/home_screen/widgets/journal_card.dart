@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_webapi_first_course/helpers/weekday.dart';
 import 'package:flutter_webapi_first_course/models/journal.dart';
 import 'package:flutter_webapi_first_course/screens/commom/confirmation_dialog.dart';
+import 'package:flutter_webapi_first_course/screens/commom/exception_dialog.dart';
 import 'package:flutter_webapi_first_course/services/journal_service.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:uuid/uuid.dart';
 
 class JournalCard extends StatelessWidget {
@@ -11,6 +15,7 @@ class JournalCard extends StatelessWidget {
   final Function refreshFunction;
   final int userId;
   final String token;
+
   const JournalCard({
     Key? key,
     this.journal,
@@ -77,7 +82,29 @@ class JournalCard extends StatelessWidget {
               );
 
               refreshFunction();
-            });
+            }).catchError(
+              (error) {
+                showExceptionDialog(
+                  context,
+                  content: error.message,
+                ).then((value) {
+                  SharedPreferences.getInstance().then((prefs) {
+                    prefs.clear();
+                    Navigator.pushReplacementNamed(context, "login");
+                  });
+                });
+              },
+              test: (error) => error is TokenNotValidException,
+            ).catchError(
+              (error) {
+                showExceptionDialog(
+                  context,
+                  content: error.message,
+                );
+              },
+              test: (error) => error is HttpException,
+            );
+            ;
           }
         }
       });
