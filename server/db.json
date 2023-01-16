@@ -7,18 +7,5 @@
     }
   ],
   "learnhttp": {},
-  "journals": [
-    {
-      "id": "d587c070-9015-11ed-a338-09fed2292ba6",
-      "content": "que merda não funcionou ,:(",
-      "created_at": "2022-12-30 09:03:20.267540",
-      "updated_at": "2022-12-30 09:03:20.267540"
-    },
-    {
-      "id": "2b507bc0-907d-11ed-9a46-4bc67a079e37",
-      "content": "dia de trabalho foda 🥱🥱",
-      "created_at": "2023-01-09 20:49:48.019179",
-      "updated_at": "2023-01-09 20:49:48.019179"
-    }
-  ]
+  "journals": []
 }
