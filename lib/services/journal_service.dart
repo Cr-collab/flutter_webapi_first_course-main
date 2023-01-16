@@ -84,12 +84,13 @@ class JournalService {
     return list;
   }
 
-  Future<bool> delete(
-    String id,
-  ) async {
-    final uriParse = Uri.parse('${getUrl()}$id');
+  Future<bool> delete(String idJournal, String token) async {
+    final uriParse = Uri.parse("${getUrl()}$idJournal");
 
-    http.Response response = await http.delete(uriParse);
+    http.Response response = await http.delete(
+      uriParse,
+      headers: {"Authorization": "Bearer $token"},
+    );
 
     if (response.statusCode == 200) {
       return true;

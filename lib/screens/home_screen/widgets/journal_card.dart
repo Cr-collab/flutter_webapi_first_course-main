@@ -10,12 +10,14 @@ class JournalCard extends StatelessWidget {
   final DateTime showedDate;
   final Function refreshFunction;
   final int userId;
+  final String token;
   const JournalCard({
     Key? key,
     this.journal,
     required this.showedDate,
     required this.refreshFunction,
     required this.userId,
+    required this.token,
   }) : super(key: key);
 
   callAddJournalScreen(BuildContext context, {Journal? journal}) {
@@ -62,7 +64,12 @@ class JournalCard extends StatelessWidget {
       ).then((value) {
         if (value != null) {
           if (value) {
-            service.delete(journal!.id).then((value) {
+            service
+                .delete(
+              journal!.id,
+              token,
+            )
+                .then((value) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
                   content: Text('Dado deletado com sucesso'),
