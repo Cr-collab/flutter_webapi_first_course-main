@@ -49,7 +49,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             ListTile(
-              onTap: (() {}),
+              onTap: (() {
+                logout();
+              }),
               title: const Text("Deslogar"),
               leading: const Icon(
                 Icons.logout,

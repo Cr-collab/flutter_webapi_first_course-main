@@ -2,10 +2,25 @@
   "users": [
     {
       "email": "cristiccorrea@gmail.com",
-      "password": "$2a$10$0g2rIqYBW5RyqkTjcslmyu3rX2PJ36JdMW3kTK.xJlsO4Ix3hVJla",
+      "password": "$2a$10$12g6.t9b150A.1.I99tWse.TYy2uKwgLa6VUHeGPIC0YD2DnGdGrG",
       "id": 1
     }
   ],
   "learnhttp": {},
-  "journals": []
+  "journals": [
+    {
+      "id": "3de1a5f0-95de-11ed-ab51-df04597a402b",
+      "content": "que dia em chato só enrolando no trabalho 😢😢😢 😢",
+      "created_at": "2023-01-16 17:41:53.044735",
+      "updated_at": "2023-01-16 17:41:53.044735",
+      "userId": 1
+    },
+    {
+      "id": "be76eb20-95e4-11ed-82bd-178a404e8024",
+      "content": "",
+      "created_at": "2023-01-06 18:18:34.964650",
+      "updated_at": "2023-01-06 18:18:34.964650",
+      "userId": 1
+    }
+  ]
 }

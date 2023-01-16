@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_webapi_first_course/screens/commom/confirmation_dialog.dart';
+import 'package:flutter_webapi_first_course/screens/commom/exception_dialog.dart';
 import 'package:flutter_webapi_first_course/services/auth_service.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -12,32 +15,39 @@ class LoginScreen extends StatelessWidget {
   login(BuildContext context) async {
     String email = _emailController.text;
     String password = _passwController.text;
-    try {
-      await authService
-          .login(email: email, password: password)
-          .then((resultLoggin) {
-        if (resultLoggin) {
-          Navigator.pushReplacementNamed(context, "home");
-        }
-      });
-    } on UserNotFindException {
-      showConfirmationDialog(
-        context,
-        content:
-            "Deseja criar um novo usuário usando o email $email e a senha passada ?",
-        affirmativeOption: 'Criar',
-      ).then((value) {
-        if (value != null && value) {
-          authService
-              .register(email: email, password: password)
-              .then((resultRegister) {
-            if (resultRegister) {
-              Navigator.pushReplacementNamed(context, "home");
-            }
-          });
-        }
-      });
-    }
+
+    await authService
+        .login(email: email, password: password)
+        .then((resultLoggin) {
+      if (resultLoggin) {
+        Navigator.pushReplacementNamed(context, "home");
+      }
+    }).catchError(
+      (error) {
+        showExceptionDialog(context, content: error.message);
+      },
+      test: (error) => error is HttpException,
+    ).catchError(
+      (error) {
+        showConfirmationDialog(
+          context,
+          content:
+              "Deseja criar um novo usuário usando o email $email e a senha passada ?",
+          affirmativeOption: 'Criar',
+        ).then((value) {
+          if (value != null && value) {
+            authService
+                .register(email: email, password: password)
+                .then((resultRegister) {
+              if (resultRegister) {
+                Navigator.pushReplacementNamed(context, "home");
+              }
+            });
+          }
+        });
+      },
+      test: (error) => error is UserNotFindException,
+    );
   }
 
   @override
