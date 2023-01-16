@@ -45,6 +45,19 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => refresh(), icon: const Icon(Icons.refresh)),
         ],
       ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            ListTile(
+              onTap: (() {}),
+              title: const Text("Deslogar"),
+              leading: const Icon(
+                Icons.logout,
+              ),
+            ),
+          ],
+        ),
+      ),
       body: (userId != null && token != null)
           ? ListView(
               controller: _listScrollController,
@@ -61,6 +74,13 @@ class _HomeScreenState extends State<HomeScreen> {
               child: CircularProgressIndicator(),
             ),
     );
+  }
+
+  void logout() {
+    SharedPreferences.getInstance().then((prefs) {
+      prefs.clear();
+      Navigator.pushReplacementNamed(context, "login");
+    });
   }
 
   void refresh() async {
