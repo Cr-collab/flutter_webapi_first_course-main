@@ -21,7 +21,6 @@ class AuthService {
 
     if (response.statusCode != 200) {
       String content = json.decode(response.body);
-      print(content);
       switch (content.toString()) {
         case "Cannot find user":
           throw UserNotFindException();

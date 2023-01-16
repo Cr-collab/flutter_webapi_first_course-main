@@ -104,7 +104,6 @@ class JournalCard extends StatelessWidget {
               },
               test: (error) => error is HttpException,
             );
-            ;
           }
         }
       });

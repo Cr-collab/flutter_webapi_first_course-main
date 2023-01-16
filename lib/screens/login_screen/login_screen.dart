@@ -9,9 +9,9 @@ import 'package:flutter_webapi_first_course/services/auth_service.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
 
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwController = TextEditingController();
-  AuthService authService = AuthService();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwController = TextEditingController();
+  final AuthService authService = AuthService();
 
   login(BuildContext context) async {
     String email = _emailController.text;

@@ -18,10 +18,6 @@ class AddJournalScreen extends StatelessWidget {
   registerJournal(BuildContext context) {
     SharedPreferences.getInstance().then((prefs) {
       String? token = prefs.getString("accessToken");
-      print({
-        "🚀 ~ file: add_journal_screen.dart:21 ~ AddJournalScreen ~ SharedPreferences.getInstance ~ token",
-        token
-      });
 
       if (token != null) {
         String content = _contentController.text;
@@ -30,12 +26,10 @@ class AddJournalScreen extends StatelessWidget {
 
         JournalService service = JournalService();
         if (isEditing) {
-          print('aquiiii');
           service.register(journal, token).then((value) {
             Navigator.pop(context, value);
           });
         } else {
-          print("aquiiiii");
           service.edit(journal.id, journal, token).then((value) {
             Navigator.pop(context, value);
           });

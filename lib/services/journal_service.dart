@@ -47,7 +47,7 @@ class JournalService {
     String token,
   ) async {
     final uriParse = Uri.parse('${getUrl()}$id');
-
+    journal.updatedAt = DateTime.now();
     String jsonJournal = json.encode(journal.toMap());
     http.Response response = await client.put(
       uriParse,

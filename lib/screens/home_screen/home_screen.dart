@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 token: token!,
               ),
             )
-          : Center(
+          : const Center(
               child: CircularProgressIndicator(),
             ),
     );
