@@ -24,7 +24,8 @@ class AuthService {
 
     if (response.statusCode != 200) {
       String content = json.decode(response.body);
-      switch (content) {
+      print(content);
+      switch (content.toString()) {
         case "Cannot find user":
           throw UserNotFindException();
       }
@@ -61,7 +62,7 @@ class AuthService {
     int id = map["user"]["id"];
 
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString("acessToken", token);
+    prefs.setString("accessToken", token);
     prefs.setString("email", email);
     prefs.setInt("id", id);
 

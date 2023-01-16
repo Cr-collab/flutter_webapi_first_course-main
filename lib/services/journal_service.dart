@@ -18,13 +18,19 @@ class JournalService {
   }
 
   // salvando os dados
-  Future<bool> register(Journal journal) async {
+  Future<bool> register(
+    Journal journal,
+    String token,
+  ) async {
     final uriParse = Uri.parse(getUrl());
     String jsonJournal = json.encode(journal.toMap());
     http.Response response = await client.post(
       uriParse,
       body: jsonJournal,
-      headers: {'Content-type': "application/json"},
+      headers: {
+        'Content-type': "application/json",
+        "Authorization": "Bearer $token",
+      },
     );
 
     if (response.statusCode == 201) {
@@ -34,13 +40,20 @@ class JournalService {
   }
 
   // editando os dados
-  Future<bool> edit(String id, Journal journal) async {
+  Future<bool> edit(
+    String id,
+    Journal journal,
+    String token,
+  ) async {
     final uriParse = Uri.parse('${getUrl()}$id');
 
     String jsonJournal = json.encode(journal.toMap());
     http.Response response = await client.put(
       uriParse,
-      headers: {'Content-type': "application/json"},
+      headers: {
+        'Content-type': "application/json",
+        "Authorization": "Bearer $token",
+      },
       body: jsonJournal,
     );
 
@@ -50,8 +63,10 @@ class JournalService {
     return false;
   }
 
-  Future<List<Journal>> getAll(
-      {required String id, required String token}) async {
+  Future<List<Journal>> getAll({
+    required String id,
+    required String token,
+  }) async {
     http.Response response = await client.get(
       Uri.parse("${url}users/$id/journals"),
       headers: {"Authorization": "Bearer $token"},
@@ -69,7 +84,9 @@ class JournalService {
     return list;
   }
 
-  Future<bool> delete(String id) async {
+  Future<bool> delete(
+    String id,
+  ) async {
     final uriParse = Uri.parse('${getUrl()}$id');
 
     http.Response response = await http.delete(uriParse);

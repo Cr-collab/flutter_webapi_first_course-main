@@ -13,7 +13,9 @@ class LoginScreen extends StatelessWidget {
     String email = _emailController.text;
     String password = _passwController.text;
     try {
-      authService.login(email: email, password: password).then((resultLoggin) {
+      await authService
+          .login(email: email, password: password)
+          .then((resultLoggin) {
         if (resultLoggin) {
           Navigator.pushReplacementNamed(context, "home");
         }

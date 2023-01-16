@@ -2,10 +2,18 @@
   "users": [
     {
       "email": "cristiccorrea@gmail.com",
-      "password": "$2a$10$DpDuRV6cg2bT2.n/1bLCN.YKoWWGZaRF3oTR34YR.6cQQLsOTybhq",
+      "password": "$2a$10$0g2rIqYBW5RyqkTjcslmyu3rX2PJ36JdMW3kTK.xJlsO4Ix3hVJla",
       "id": 1
     }
   ],
   "learnhttp": {},
-  "journals": []
+  "journals": [
+    {
+      "id": "af498160-9591-11ed-9fef-4bd96287279b",
+      "content": "deu bom de novo 😊😊😊",
+      "created_at": "2023-01-16 08:33:56.278298",
+      "updated_at": "2023-01-16 08:33:56.278298",
+      "userId": 1
+    }
+  ]
 }

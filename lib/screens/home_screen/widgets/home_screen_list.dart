@@ -6,6 +6,7 @@ List<JournalCard> generateListJournalCards({
   required DateTime currentDay,
   required Map<String, Journal> database,
   required Function refreshFunction,
+  required userId,
 }) {
   // Cria uma lista de Cards vazios
   List<JournalCard> list = List.generate(
@@ -15,6 +16,7 @@ List<JournalCard> generateListJournalCards({
       showedDate: currentDay.subtract(
         Duration(days: (windowPage) - index),
       ),
+      userId: userId,
     ),
   );
 
@@ -31,6 +33,7 @@ List<JournalCard> generateListJournalCards({
         showedDate: list[difference].showedDate,
         journal: value,
         refreshFunction: refreshFunction,
+        userId: userId,
       );
     }
   });
